@@ -5,6 +5,9 @@
   "main": "app.js",
   "scripts": {
     "watch-ts": "tsc -w",
+    "build": "tsc",
+    "test": "npm run build && jasmine JASMINE_CONFIG_PATH=spec/support/unit.conf.json",
+    "coverage": "npm run build && istanbul cover jasmine JASMINE_CONFIG_PATH=spec/support/unit.conf.json -x '**/dev/**' -x '**/spec/**'",
     "watch-node": "nodemon dist/server.js",
     "stop": "pkill -f node",
     "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\""
@@ -13,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^6.10.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
@@ -23,7 +27,16 @@
     "@types/express": "^4.17.2",
     "@types/morgan": "^1.7.37",
     "@types/node": "^12.12.21",
+    "chai": "^4.2.0",
     "concurrently": "^5.0.2",
-    "nodemon": "^2.0.2"
+    "expect": "^24.9.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^3.5.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.2",
+    "nyc": "^14.1.1",
+    "should": "^13.2.3",
+    "sinon": "^8.0.0"
   }
 }
