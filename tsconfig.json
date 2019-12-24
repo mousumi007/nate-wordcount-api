@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": false,
+    "suppressImplicitAnyIndexErrors": true,
     // "allowSyntheticDefaultImports": true,
     "target": "ES2019",
     "noImplicitAny": true,

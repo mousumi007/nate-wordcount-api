@@ -2,30 +2,32 @@ import * as axios from "axios";
 
 const utility = require("../utility/Utility");
 
+//Class for http request calls
 export class HttpRequests {
-  private finalResponse: Array<object>;
+  constructor() {}
 
-  constructor() {
-    this.finalResponse = [];
-  }
-
+  //method actually executing http get request and returning response
   async getRequest(url: string) {
     try {
+      //http get call
       const response = await axios.default.get(url);
 
-      const responseMap = utility.countWords(response.data);
+      //converting the http response to a map and counting the word occurences
+      const responseMap: Map<string, number> = utility.countWords(
+        response.data
+      );
 
-      for (let [key, value] of responseMap) {
-        const tempObj: any = {};
-        tempObj[key] = value;
-        this.finalResponse.push(tempObj);
-      }
+      //format the response in key-value pair
+      const formattedResponse: Array<object> = utility.formatResponse(
+        responseMap
+      );
 
-      return this.finalResponse;
+      return formattedResponse;
     } catch (error) {
+      //Error Handling
       const errorObj = {
-        status: error.response.status,
-        message: error.message
+        status: (error.response && error.response.status) || "500",
+        message: error.message || "Invalid host name"
       };
       throw errorObj;
     }

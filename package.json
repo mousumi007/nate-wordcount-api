@@ -1,7 +1,7 @@
 {
   "name": "nate-wordcount-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Word count API developed in typescript",
   "main": "app.js",
   "scripts": {
     "watch-ts": "tsc -w",
@@ -13,7 +13,7 @@
     "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\""
   },
   "keywords": [],
-  "author": "",
+  "author": "Mousumi",
   "license": "ISC",
   "dependencies": {
     "ajv": "^6.10.2",

@@ -2,6 +2,7 @@ const Ajv = require("ajv");
 const ajv = new Ajv({ allErrors: true });
 const utility: any = {};
 
+/** function to count the word occurences in string */
 utility.countWords = (sentence: string): Map<string, number> => {
   const map: Map<string, number> = new Map<string, number>();
 
@@ -29,24 +30,19 @@ utility.countWords = (sentence: string): Map<string, number> => {
   return map;
 };
 
+// function to sort by key
 function sortByKey(a: any, b: any) {
-  const a_key: any = Object.keys(a);
-  const b_key: any = Object.keys(b);
-
-  if (a_key == b_key) return 0;
-  return a_key > b_key ? 1 : -1;
+  if (a.key == b.key) return 0;
+  return a.key > b.key ? 1 : -1;
 }
 
+// function to sort by value
 function sortByValue(a: any, b: any) {
-  const a_key: any = Object.keys(a);
-  const a_value = a[a_key];
-  const b_key: any = Object.keys(b);
-  const b_value = b[b_key];
-
-  if (a_value == b_value) return 0;
-  return a_value > b_value ? 1 : -1;
+  if (a.count == b.count) return 0;
+  return a.count > b.count ? 1 : -1;
 }
 
+// function to determine whether to sort by key or value
 utility.performSort = (data: Array<object>, orderBy: string) => {
   if (orderBy.toLowerCase() === "key") {
     return data.sort(sortByKey);
@@ -55,6 +51,7 @@ utility.performSort = (data: Array<object>, orderBy: string) => {
   }
 };
 
+//function for request schema validation
 utility.schemaValidation = (schema: any, data: any) => {
   const validate = ajv.compile(schema);
 
@@ -75,4 +72,20 @@ utility.schemaValidation = (schema: any, data: any) => {
     return true;
   }
 };
+
+//function to format http response from Map to Array<object>
+utility.formatResponse = (data: Map<string, number>) => {
+  let formattedResponse: Array<object> = [];
+
+  for (let [key, value] of data) {
+    const tempObj = {
+      key: key,
+      count: value
+    };
+    formattedResponse.push(tempObj);
+  }
+
+  return formattedResponse;
+};
+
 module.exports = utility;

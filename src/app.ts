@@ -19,10 +19,10 @@ app.use((request, response, next) => {
   response.header("Access-Control-Allow-Origin", "*");
   response.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With,Content-Type,Accept,Authorization"
+    "Origin, X-Requested-With,content-type,Accept,Authorization"
   );
   if (request.method === "OPTIONS") {
-    response.header("Access-Control-Allow-Headers", "POST");
+    response.header("Access-Control-Allow-Headers", "POST,content-type");
     return response.status(204).json({});
   }
   next();
@@ -38,6 +38,7 @@ app.use((request, response, next) => {
   next(error);
 });
 
+//Error handling
 app.use(
   (
     error: ResponseError,
@@ -45,7 +46,7 @@ app.use(
     response: express.Response,
     next: express.NextFunction
   ) => {
-    response.status(error.status || 500);
+    response.status((error && error.status) || 500);
     response.json({
       error: {
         message: error.message || "Internal Server Error"

@@ -15,7 +15,6 @@ describe("Unit Test - HttpRequest handler:", function() {
     const validURL = "https://norvig.com/big.txt";
     const obj = new HttpRequests();
     const response = await obj.getRequest(validURL);
-
     expect(response).to.be.an("array");
   });
 

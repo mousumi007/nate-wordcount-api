@@ -3,6 +3,13 @@
 This API will return the ocurences of word in the below mentioned format. The API may take an optional parameter 'orderBy' which
 if provided will sort the results either on 'key' or 'value'. Default ordering is by 'value'.
 
+## Http Codes
+
+200 -- Success
+400 -- For any schema related errors
+404 -- Not Found
+500 -- Internal Server Error , not able to connect with the requested url
+
 ## Endpoints Summary
 
 | Methods | Endpoint     | Summary                                           |
@@ -29,11 +36,13 @@ This endpoint creates notififcation preferences for the user
 
 {
     "orderedResponse": [
-        {
-            "testified": 1
+       {
+            "key": "testified",
+            "count": 1
         },
         {
-            "min": 4
+            "key": "min",
+            "count": 2
         }
     ]
 }
