@@ -33,7 +33,7 @@
     "istanbul": "^0.4.5",
     "jasmine": "^3.5.0",
     "jasmine-spec-reporter": "^4.2.1",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.2",
     "nyc": "^14.1.1",
     "should": "^13.2.3",
